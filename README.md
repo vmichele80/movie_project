@@ -1,6 +1,6 @@
 This project creates a nice gallery of your preferred movies.
 
-movie.py is the main entry point of the application. It implements a command-line interface (CLI) that allows users to manage a personal movie database.
+main.py is the main entry point of the application. It implements a command-line interface (CLI) that allows users to manage a personal movie database.
 
 The file is responsible for:
 
