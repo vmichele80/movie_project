@@ -48,27 +48,28 @@ def add_movie():
         print("Movie title cannot be empty.")
         return
 
-
-    if movie_title not in movies:
+    try:
         # we store the data retrieved from the api in a variable (dictionary)
-        # if internet connectivity fails we show a message.
-        # We do not expose the error why it would reveal the api key
-        try:
-            movie_data = retrieve_movie_data_from_api(movie_title)
-            if movie_data['Response'] == 'True':
-                movie_rating = movie_data['imdbRating']
-                movie_year = movie_data['Year']
-                movie_poster_url = movie_data['Poster']
-                storage.add_movie(movie_title, movie_year, movie_rating, movie_poster_url)
-                print("Movie added successfully.")
-            else:
-                print("This movie was not found in the Open Movie Database")
-        except Exception:
-            print(f"Connection to the API was not possible. \nCheck your Internet connection and try again later")
+        movie_data = retrieve_movie_data_from_api(movie_title)
 
-    else:
-        print("Movie name is already in database. To update use the update option from the Menu")
+        # note that the api might retrieve a different title e.g. 2 gives Terminator 2 as title
+        if movie_data['Title'] not in movies:
+                if movie_data['Response'] == 'True':
+                    movie_title = movie_data['Title']
+                    movie_rating = movie_data['imdbRating']
+                    movie_year = movie_data['Year']
+                    movie_poster_url = movie_data['Poster']
+                    storage.add_movie(movie_title, movie_year, movie_rating, movie_poster_url)
+                else:
+                    print("This movie was not found in the Open Movie Database")
 
+        else:
+            print(f"Movie {movie_data['Title']} is already in database. To update use the update option from the Menu")
+
+    # if internet connectivity fails we show a message.
+    # We do not expose the error why it would reveal the api key
+    except Exception:
+        print(f"Connection to the API was not possible. \nCheck your Internet connection and try again later")
 
 def delete_movie():
     """
