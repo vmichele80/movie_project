@@ -14,7 +14,7 @@ with engine.connect() as connection:
             title TEXT UNIQUE NOT NULL,
             year INTEGER NOT NULL,
             rating REAL NOT NULL,
-            poster_image_url TEXT NOT NULL.
+            poster_image_url TEXT NOT NULL
         )
     """))
     connection.commit()
@@ -28,16 +28,18 @@ def get_movies():
 
     return {row[0]: {"year": row[1], "rating": row[2]} for row in movies}
 
-def add_movie(title, year, rating):
+def add_movie(title, year, rating, poster_image_url):
     """Add a new movie to the database."""
+
     with engine.connect() as connection:
         try:
-            connection.execute(text("INSERT INTO movies (title, year, rating) VALUES (:title, :year, :rating)"),
-                               {"title": title, "year": year, "rating": rating})
+            connection.execute(text("INSERT INTO movies (title, year, rating, poster_image_url) VALUES (:title, :year, :rating, :poster_image_url)"),
+                               {"title": title, "year": year, "rating": rating, "poster_image_url": poster_image_url})
             connection.commit()
             print(f"Movie '{title}' added successfully.")
         except Exception as e:
             print(f"Error: {e}")
+
 
 def delete_movie(title):
     """Delete a movie from the database."""

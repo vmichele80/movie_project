@@ -1,6 +1,7 @@
 import random
 import sys
 import movie_storage_sql as storage
+from api_requests_test import retrieve_movie_data_from_api
 from movies_menu import MENU
 
 
@@ -44,15 +45,20 @@ def add_movie():
 
 
     if movie_title not in movies:
-        try:
-            movie_rating = float(input("Enter movie rating: "))
-            movie_year = int(input("Enter movie year of release: "))
-        except ValueError:
-            print("Invalid rating or release year. They must be numbers.")
-            return
+        movie_data = retrieve_movie_data_from_api(movie_title)
+        movie_rating = movie_data['imdbRating']
+        movie_year = movie_data['Year']
+        movie_poster_url = movie_data['Poster']
+        print(movie_title + movie_rating + movie_year + movie_poster_url )
+        # try:
+        #     movie_rating = float(input("Enter movie rating: "))
+        #     movie_year = int(input("Enter movie year of release: "))
+        # except ValueError:
+        #     print("Invalid rating or release year. They must be numbers.")
+        #     return
 
 
-        storage.add_movie(movie_title, movie_year, movie_rating)
+        storage.add_movie(movie_title, movie_year, movie_rating, movie_poster_url)
 
         print("Movie added successfully.")
     else:
