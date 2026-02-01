@@ -1,6 +1,8 @@
 This project creates a nice gallery of your preferred movies.
 
 main.py is the main entry point of the application. It implements a command-line interface (CLI) that allows users to manage a personal movie database.
+Please create a .env file and insert in it your OMDB API key as 
+API_KEY = "your api key here" otherwise the application will not work
 
 The file is responsible for:
 
