@@ -11,4 +11,5 @@ Menu:
 6. Random movie
 7. Search movie
 8. Movies sorted by rating
+9. Generate Movie Gallery Website
 """

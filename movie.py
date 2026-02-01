@@ -1,10 +1,10 @@
 import random
 import sys
-from optparse import TitledHelpFormatter
 
 import movie_storage_sql as storage
 from api_requests_test import retrieve_movie_data_from_api
 from movies_menu import MENU
+from  movie_website_generator import create_website
 
 
 
@@ -233,6 +233,8 @@ def main():
             search_movie(storage.get_movies())
         elif user_choice == "8":
             movies_sorted_by_rating(storage.get_movies())
+        elif user_choice == "9":
+            create_website(storage.get_movies_for_website())
         elif user_choice == "0":
 
             exit_app()
