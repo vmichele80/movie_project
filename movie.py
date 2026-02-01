@@ -55,7 +55,12 @@ def add_movie():
         if movie_data['Title'] not in movies:
                 if movie_data['Response'] == 'True':
                     movie_title = movie_data['Title']
-                    movie_rating = movie_data['imdbRating']
+                    # handles the case the movie rating is not available
+                    if movie_data['imdbRating'] == 'N/A':
+                        movie_rating = float(input("There is not rating for this movie. Give a rating: "))
+                    else:
+                        movie_rating = movie_data['imdbRating']
+
                     movie_year = movie_data['Year']
                     movie_poster_url = movie_data['Poster']
                     storage.add_movie(movie_title, movie_year, movie_rating, movie_poster_url)
@@ -68,7 +73,9 @@ def add_movie():
     # if internet connectivity fails we show a message.
     # We do not expose the error why it would reveal the api key
     except Exception:
-        print(f"Connection to the API was not possible. \nCheck your Internet connection and try again later")
+        print(f"Connection to the API was not possible. "
+              f"\nCheck your Internet connection and try again later")
+
 
 
 def delete_movie():
@@ -117,7 +124,8 @@ def stats(movies):
         return
 
     for movie in movies.values():
-        ratings.append(movie["rating"])
+        if movie["rating"] != "N/A":
+            ratings.append(movie["rating"])
 
     average = sum(ratings) / len(ratings)
     print(f"Average rating: {average:.2f}")
