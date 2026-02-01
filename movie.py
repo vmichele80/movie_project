@@ -53,11 +53,14 @@ def add_movie():
         # We do not expose the error why it would reveal the api key
         try:
             movie_data = retrieve_movie_data_from_api(movie_title)
-            movie_rating = movie_data['imdbRating']
-            movie_year = movie_data['Year']
-            movie_poster_url = movie_data['Poster']
-            storage.add_movie(movie_title, movie_year, movie_rating, movie_poster_url)
-            print("Movie added successfully.")
+            if movie_data['Response'] == 'True':
+                movie_rating = movie_data['imdbRating']
+                movie_year = movie_data['Year']
+                movie_poster_url = movie_data['Poster']
+                storage.add_movie(movie_title, movie_year, movie_rating, movie_poster_url)
+                print("Movie added successfully.")
+            else:
+                print("This movie was not found in the Open Movie Database")
         except Exception:
             print(f"Connection to the API was not possible. \nCheck your Internet connection and try again later")
 
