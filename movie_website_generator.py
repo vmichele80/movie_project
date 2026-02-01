@@ -11,10 +11,12 @@ def create_movie_cards(movies):
     """
     It creates all the movie cards
     """
+
+    output = ''  # define an empty string
+
     if len(movies) == 0:
-        print("There are no movies in the database.")
+        output = 'There are no movies in the database.'
     else:
-        output = ''  # define an empty string
         for movie in movies:
             movie_title = movie[0]
             movie_year = movie[1]
@@ -30,7 +32,7 @@ def create_movie_cards(movies):
             output += '</div>'
             output += '</li>'
 
-        return output
+    return output
 
 def create_website(movies):
     html_code = load_html()
