@@ -13,7 +13,8 @@ with engine.connect() as connection:
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT UNIQUE NOT NULL,
             year INTEGER NOT NULL,
-            rating REAL NOT NULL
+            rating REAL NOT NULL,
+            poster_image_url TEXT NOT NULL.
         )
     """))
     connection.commit()
