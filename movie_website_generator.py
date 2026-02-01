@@ -1,11 +1,10 @@
-import json
-
 
 def load_html():
-    """it loads a the HTML code from the template"""
+    """it loads the HTML code from the template"""
     with open("_static/index_template.html", "r", encoding="utf-8") as fname:
         source_code = fname.read()
     return source_code
+
 
 def create_movie_cards(movies):
     """
@@ -33,6 +32,7 @@ def create_movie_cards(movies):
             output += '</li>'
 
     return output
+
 
 def create_website(movies):
     html_code = load_html()

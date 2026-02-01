@@ -3,3 +3,4 @@
 __pycache__/
 data/movies.db
 .env
+old_code

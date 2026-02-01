@@ -12,12 +12,12 @@ def retrieve_movie_data_from_api(movie_title):
     returns it to the main add movie function for further
     processing"""
 
-    URL_REQUEST_MOVIE = f"{URL_REQUEST}t={movie_title}&apikey={API_KEY}"
+    url_request_movie = f"{URL_REQUEST}t={movie_title}&apikey={API_KEY}"
 
     # Debugging
-    # print(URL_REQUEST_MOVIE)
+    # print(url_request_movie)
 
-    movie_data = requests.get(URL_REQUEST_MOVIE)
+    movie_data = requests.get(url_request_movie)
     movie_data = movie_data.json()
 
     # Debugging

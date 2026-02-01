@@ -4,7 +4,7 @@ from sqlalchemy import create_engine, text
 DB_URL = "sqlite:///data/movies.db"
 
 # Create the engine
-engine = create_engine(DB_URL, echo=True)
+engine = create_engine(DB_URL, echo=False)
 
 # Create the movies table if it does not exist
 with engine.connect() as connection:
@@ -27,6 +27,7 @@ def get_movies():
         movies = result.fetchall()
 
     return {row[0]: {"year": row[1], "rating": row[2]} for row in movies}
+
 
 def add_movie(title, year, rating, poster_image_url):
     """Add a new movie to the database."""
@@ -58,6 +59,7 @@ def delete_movie(title):
         except Exception as e:
             print(f"Error: {e}")
 
+
 def update_movie(title, rating):
     """Update a movie's rating in the database."""
     with engine.connect() as connection:
@@ -74,6 +76,7 @@ def update_movie(title, rating):
                 print(f"Movie '{title}' updated successfully (new rating: {rating}).")
         except Exception as e:
             print(f"Error: {e}")
+
 
 def get_movies_for_website():
     """Retrieve movies data for all movies from the local database."""

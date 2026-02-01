@@ -7,7 +7,6 @@ from movies_menu import MENU
 from  movie_website_generator import create_website
 
 
-
 def show_menu():
     """
     Show the user menu saved in a separate file
@@ -70,6 +69,7 @@ def add_movie():
     # We do not expose the error why it would reveal the api key
     except Exception:
         print(f"Connection to the API was not possible. \nCheck your Internet connection and try again later")
+
 
 def delete_movie():
     """
@@ -196,7 +196,6 @@ def movies_sorted_by_rating(movies):
         print(f"Place {placement} - {title} : {info['rating']}")
 
 
-
 def press_enter_to_continue():
     """
     Makes the output more redeable giving the user time to read
@@ -210,7 +209,6 @@ def exit_app():
     print("Bye")
     sys.exit()
 
-# Here starts the main function
 
 def main():
     """This is the main function where the user input of the commands is interpreted"""
