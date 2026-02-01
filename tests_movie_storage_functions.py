@@ -5,17 +5,17 @@ add_movie("Inception", 2010, 8.8)
 add_movie("Wicked 2", 2025, 7.2)
 
 # Test listing movies
-movies = list_movies()
+movies = get_movies()
 print(movies)
 
 # Test updating a movie's rating
 update_movie("Inception", 9.0)
-print(list_movies())
+print(get_movies())
 
 # Test deleting a movie
 # delete_movie("Inception")
-# print(list_movies())  # Should be empty if it was the only movie
+# print(get_movies())  # Should be empty if it was the only movie
 
 # Test deleting a movie
 # delete_movie("Inception")
-# print(list_movies())  # Should be empty if it was the only movie
+# print(get_movies())  # Should be empty if it was the only movie

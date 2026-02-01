@@ -1,6 +1,6 @@
 import random
 import sys
-import movies_storage
+import movie_storage_sql as storage
 from movies_menu import MENU
 
 
@@ -36,7 +36,7 @@ def add_movie():
     We will be using a dictionary of dictionaries where the the move title is the main key.
     (assume that the rating is a number between 1-10).
     """
-    movies = movies_storage.get_movies()
+    movies = storage.get_movies()
     movie_title = input("Enter movie name: ")
     if not movie_title.strip():
         print("Movie title cannot be empty.")
@@ -52,7 +52,7 @@ def add_movie():
             return
 
 
-        movies_storage.add_movie(movie_title, movie_year, movie_rating)
+        storage.add_movie(movie_title, movie_year, movie_rating)
 
         print("Movie added successfully.")
     else:
@@ -66,10 +66,10 @@ def delete_movie():
     If the movie doesn’t exist in the database, print an error message,
     and then print the menu again as always.
     """
-    movies = movies_storage.get_movies()
+    movies = storage.get_movies()
     movie_to_delete = input("Enter movie to delete: ")
     if movie_to_delete in movies:
-        movies_storage.delete_movie(movie_to_delete)
+        storage.delete_movie(movie_to_delete)
         print(f"The movie {movie_to_delete} has been deleted.")
     else:
         print("Movie not found")
@@ -84,11 +84,11 @@ def update_movie():
     It calls the external function for persistent storage.
     There is no need to validate the input.
     """
-    movies = movies_storage.get_movies()
+    movies = storage.get_movies()
     movie_to_update = input("Enter the movie for which you want to give an updated rating: ")
     if movie_to_update in movies:
         rating = float(input("Enter new movie rating: "))
-        movies_storage.update_movie(movie_to_update, rating)
+        storage.update_movie(movie_to_update, rating)
         print(f"The rating for the movie has been updated.")
     else:
         print("Movie not found")
@@ -199,12 +199,12 @@ def exit_app():
 # Here starts the main function
 
 def main():
-    # movies_list = movies_storage.get_movies()
+    """This is the main function where the user input of the commands is interpreted"""
 
     while True:
         user_choice = show_menu()
         if user_choice == "1":
-            show_list_of_movies(movies_storage.get_movies())
+            show_list_of_movies(storage.get_movies())
         elif user_choice == "2":
             add_movie()
         elif user_choice == "3":
@@ -213,13 +213,13 @@ def main():
             update_movie()
 
         elif user_choice == "5":
-            stats(movies_storage.get_movies())
+            stats(storage.get_movies())
         elif user_choice == "6":
-            random_movie(movies_storage.get_movies())
+            random_movie(storage.get_movies())
         elif user_choice == "7":
-            search_movie(movies_storage.get_movies())
+            search_movie(storage.get_movies())
         elif user_choice == "8":
-            movies_sorted_by_rating(movies_storage.get_movies())
+            movies_sorted_by_rating(storage.get_movies())
         elif user_choice == "0":
 
             exit_app()
