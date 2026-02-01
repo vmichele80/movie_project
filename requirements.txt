@@ -1,0 +1,6 @@
+random
+sys
+sqlalchemy
+os
+requests
+dotenv
