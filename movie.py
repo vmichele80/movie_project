@@ -2,7 +2,7 @@ import random
 import sys
 
 import movie_storage_sql as storage
-from api_requests_test import retrieve_movie_data_from_api
+from api_requests import retrieve_movie_data_from_api
 from movies_menu import MENU
 from  movie_website_generator import create_website
 

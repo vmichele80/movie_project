@@ -1,5 +1,5 @@
 from movie_storage_sql import add_movie, get_movies, delete_movie, update_movie, get_movies_for_website
-from api_requests_test import retrieve_movie_data_from_api
+from api_requests import retrieve_movie_data_from_api
 from  movie_website_generator import create_website
 
 
