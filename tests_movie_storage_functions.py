@@ -9,13 +9,13 @@ movies = list_movies()
 print(movies)
 
 # Test updating a movie's rating
-# update_movie("Inception", 9.0)
-# print(list_movies())
+update_movie("Inception", 9.0)
+print(list_movies())
 
 # Test deleting a movie
-delete_movie("Inception")
-print(list_movies())  # Should be empty if it was the only movie
+# delete_movie("Inception")
+# print(list_movies())  # Should be empty if it was the only movie
 
 # Test deleting a movie
-delete_movie("Inception")
-print(list_movies())  # Should be empty if it was the only movie
+# delete_movie("Inception")
+# print(list_movies())  # Should be empty if it was the only movie
