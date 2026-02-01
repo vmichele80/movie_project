@@ -32,8 +32,11 @@ def show_list_of_movies(movies):
 
 def add_movie():
     """
-    Ask the user to enter a movie name, a rating and a year of release.
-    It calls the external function for persistent storage.
+    Ask the user to enter a movie name,
+    we check if the movie not already in our db.
+    If yest we retrieve data via the API and handle it over
+    the data entry function in movie_storage_sql.py
+    The data retrieved with the api is a list dictionary
     We will be using a dictionary of dictionaries where the the move title is the main key.
     (assume that the rating is a number between 1-10).
     """
@@ -45,11 +48,12 @@ def add_movie():
 
 
     if movie_title not in movies:
+        # we store the data retrieved from the api in a variable (dictionary)
         movie_data = retrieve_movie_data_from_api(movie_title)
         movie_rating = movie_data['imdbRating']
         movie_year = movie_data['Year']
         movie_poster_url = movie_data['Poster']
-        print(movie_title + movie_rating + movie_year + movie_poster_url )
+
         # try:
         #     movie_rating = float(input("Enter movie rating: "))
         #     movie_year = int(input("Enter movie year of release: "))
