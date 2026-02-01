@@ -49,22 +49,18 @@ def add_movie():
 
     if movie_title not in movies:
         # we store the data retrieved from the api in a variable (dictionary)
-        movie_data = retrieve_movie_data_from_api(movie_title)
-        movie_rating = movie_data['imdbRating']
-        movie_year = movie_data['Year']
-        movie_poster_url = movie_data['Poster']
+        # if internet connectivity fails we show a message.
+        # We do not expose the error why it would reveal the api key
+        try:
+            movie_data = retrieve_movie_data_from_api(movie_title)
+            movie_rating = movie_data['imdbRating']
+            movie_year = movie_data['Year']
+            movie_poster_url = movie_data['Poster']
+            storage.add_movie(movie_title, movie_year, movie_rating, movie_poster_url)
+            print("Movie added successfully.")
+        except Exception:
+            print(f"Connection to the API was not possible. \nCheck your Internet connection and try again later")
 
-        # try:
-        #     movie_rating = float(input("Enter movie rating: "))
-        #     movie_year = int(input("Enter movie year of release: "))
-        # except ValueError:
-        #     print("Invalid rating or release year. They must be numbers.")
-        #     return
-
-
-        storage.add_movie(movie_title, movie_year, movie_rating, movie_poster_url)
-
-        print("Movie added successfully.")
     else:
         print("Movie name is already in database. To update use the update option from the Menu")
 
