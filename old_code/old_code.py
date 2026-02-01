@@ -1,6 +1,6 @@
 import random
 import sys
-import movies_storage
+from old_code import movies_storage
 from movies_menu import MENU
 
 
