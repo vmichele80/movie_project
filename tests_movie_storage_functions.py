@@ -13,5 +13,9 @@ print(movies)
 # print(list_movies())
 
 # Test deleting a movie
-# delete_movie("Inception")
-# print(list_movies())  # Should be empty if it was the only movie
+delete_movie("Inception")
+print(list_movies())  # Should be empty if it was the only movie
+
+# Test deleting a movie
+delete_movie("Inception")
+print(list_movies())  # Should be empty if it was the only movie
