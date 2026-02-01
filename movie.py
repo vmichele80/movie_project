@@ -1,5 +1,7 @@
 import random
 import sys
+from optparse import TitledHelpFormatter
+
 import movie_storage_sql as storage
 from api_requests_test import retrieve_movie_data_from_api
 from movies_menu import MENU
@@ -191,6 +193,8 @@ def movies_sorted_by_rating(movies):
     for title, info in sorted_list_of_movies:
         placement += 1
         print(f"Place {placement} - {title} : {info['rating']}")
+
+
 
 def press_enter_to_continue():
     """

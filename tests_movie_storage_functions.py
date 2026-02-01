@@ -1,5 +1,6 @@
-from movie_storage_sql import add_movie, get_movies, delete_movie, update_movie
+from movie_storage_sql import add_movie, get_movies, delete_movie, update_movie, get_movies_for_website
 from api_requests_test import retrieve_movie_data_from_api
+from  movie_website_generator import create_website
 
 
 # Test adding a movie
@@ -9,6 +10,11 @@ from api_requests_test import retrieve_movie_data_from_api
 # Test listing movies
 # movies = get_movies()
 # print(movies)
+
+# Test listing movies for website and create website
+movies = get_movies_for_website()
+create_website(movies)
+
 
 # Test updating a movie's rating
 # update_movie("Inception", 9.0)
@@ -24,4 +30,4 @@ from api_requests_test import retrieve_movie_data_from_api
 
 
 # Test retrieving data from API
-retrieve_movie_data_from_api("Berlin")
+# retrieve_movie_data_from_api("Berlin")

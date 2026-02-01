@@ -74,3 +74,11 @@ def update_movie(title, rating):
                 print(f"Movie '{title}' updated successfully (new rating: {rating}).")
         except Exception as e:
             print(f"Error: {e}")
+
+def get_movies_for_website():
+    """Retrieve movies data for all movies from the local database."""
+    with engine.connect() as connection:
+        result = connection.execute(text("SELECT title, year, rating, poster_image_url FROM movies"))
+        movies = result.fetchall()
+
+    return movies
